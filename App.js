@@ -1,15 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { Component } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StyleSheet, Text, View } from 'react-native';
+import WelcomeScreen from './screens/WelcomeScreen'
+import {createBottomTabNavigator} from 'react-navigation-tabs'
+import {createAppContainer, createSwitchNavigator} from 'react-navigation'
+import {AppTabNavigator} from './components/AppTabNavigator'
 
-export default function App() {
+export default class App extends React.Component {
+  render(){
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <SafeAreaProvider>
+      <AppContainer/>
+      </SafeAreaProvider>
+
+  )
+  }
 }
+const switchNavigator = createSwitchNavigator({
+  WelcomeScreen:{
+    screen:WelcomeScreen
+  },
+
+  BottomTab:{
+    screen:AppTabNavigator
+  }
+})
+
+const AppContainer = createAppContainer(switchNavigator);
 
 const styles = StyleSheet.create({
   container: {
