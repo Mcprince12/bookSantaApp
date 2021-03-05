@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, TouchableOpacity, TextInput, ListItem, FlatList } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, KeyboardAvoidingView, TouchableOpacity, TextInput, FlatList } from 'react-native';
+import { ListItem } from 'react-native-elements';
 import db from '../config'
 import firebase from 'firebase'
 import MyHeader from '../components/MyHeader'
 
 
-export default class BookDonateScreen extends Component
+export default class BookDonateScreen extends React.Component
 {
     constructor ()
     {
         super();
         this.state = {
-            requestedBooksList: [],  
+            requestedBooksList: [], 
+            userId: firebase.auth().currentUser.email,
         }
         this.requestRef = null;
     }
@@ -25,7 +27,7 @@ export default class BookDonateScreen extends Component
                 this.setState( {
                     requestedBooksList:requestedBooksList,
                 })
-        })    
+        })   
     }
 
     componentDidMount ()
@@ -37,10 +39,7 @@ export default class BookDonateScreen extends Component
     {
         this.requestRef();
     }
-    keyExtractor = (item, index) =>
-    {
-        index.toString()
-    }
+    keyExtractor = (item, index) => index.toString()
 
     renderItem = ({item, i}) =>
     {
@@ -51,8 +50,16 @@ export default class BookDonateScreen extends Component
                 subtitle={item.reason_to_request}
                 titleStyle={{ color: 'black' }}
                 rightElement={
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={{color:'aqua'}}>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={
+                            () =>
+                            {
+                                this.props.navigation.navigate('RecieverDetails', {'details':item})
+                            }
+                        }
+                    >
+                        <Text style={{ color: 'aqua' }}>
                             View
                         </Text>
                     </TouchableOpacity>

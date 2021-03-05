@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { KeyboardAvoidingView, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import MyHeader from '../components/MyHeader';
 import db from '../config';
 import firebase from 'firebase'
 
-export default class BookRequestScreen extends Component
+export default class BookRequestScreen extends React.Component
 {
     constructor ()
     {

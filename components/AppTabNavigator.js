@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import {createBottomTabNavigator} from 'react-navigation-tabs'
 import {createAppContainer} from 'react-navigation'
-import BookDonateScreen from '../screens/BookDonateScreen';
 import BookRequestScreen from '../screens/BookRequestScreen';
+import {AppStackNavigator} from './AppStackNavigator'
 
 export const AppTabNavigator = createBottomTabNavigator({
     DonateBooks:{
-        screen:BookDonateScreen,
+        screen:AppStackNavigator,
         navigationOptions:{
             tabBarIcon:<Image source={require('../assets/request-list.png')}
             style={{width:20, height:20}}
@@ -16,13 +16,13 @@ export const AppTabNavigator = createBottomTabNavigator({
         }
     },
 
-    RequestBooks:{
+    BookRequest:{
         screen:BookRequestScreen,
         navigationOptions:{
             tabBarIcon:<Image source={require('../assets/request-book.png')}
             style={{width:20, height:20}}
             />,
-            tabBarLabel:"Request Books"
+            tabBarLabel:"Book Request"
         }
     }
 })

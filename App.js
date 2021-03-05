@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StyleSheet, Text, View } from 'react-native';
-import WelcomeScreen from './screens/WelcomeScreen'
-import {createBottomTabNavigator} from 'react-navigation-tabs'
+import WelcomeScreen from './screens/WelcomeScreen';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation'
-import {AppTabNavigator} from './components/AppTabNavigator'
+import { AppTabNavigator } from './components/AppTabNavigator';
+import { AppDrawerNavigator } from './components/AppDrawerNavigator';
 
 export default class App extends React.Component {
   render(){
@@ -21,9 +22,11 @@ const switchNavigator = createSwitchNavigator({
     screen:WelcomeScreen
   },
 
-  BottomTab:{
-    screen:AppTabNavigator
+  
+  Drawer: {
+    screen:AppDrawerNavigator
   }
+  
 })
 
 const AppContainer = createAppContainer(switchNavigator);
